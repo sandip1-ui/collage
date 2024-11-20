@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 94%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Register</h2>
+    <form id="registerForm" onsubmit="validateForm()">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            <div id="usernameError" class="error"></div>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <div id="emailError" class="error"></div>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <div id="passwordError" class="error"></div>
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <div id="confirmPasswordError" class="error"></div>
+        </div>
+        <button type="submit" class="submit-btn">Register</button>
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        // Clear any previous errors
+        document.getElementById('usernameError').innerText = '';
+        document.getElementById('emailError').innerText = '';
+        document.getElementById('passwordError').innerText = '';
+        document.getElementById('confirmPasswordError').innerText = '';
+
+        // Get the form values
+        var username = document.getElementById('username').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        var isValid = true;
+
+        // Validate username (must not be empty)
+        if (username.trim() === '') {
+            document.getElementById('usernameError').innerText = 'Username is required.';
+            isValid = false;
+        }
+
+        // Validate email (basic format check)
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailPattern.test(email)) {
+            document.getElementById('emailError').innerText = 'Please enter a valid email address.';
+            isValid = false;
+        }
+
+        // Validate password (must not be empty)
+        if (password.trim() === '') {
+            document.getElementById('passwordError').innerText = 'Password is required.';
+            isValid = false;
+        }
+
+        // Validate that passwords match
+        if (password !== confirmPassword) {
+            document.getElementById('confirmPasswordError').innerText = 'Passwords do not match.';
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>
+
+</body>
+</html>

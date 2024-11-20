@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TravelExplorer</title>
+    <style>
+        *::-webkit-scrollbar{
+            display: none;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .h{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h2 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 30px;
+            background-color: #c6def7;
+            width: 70%;
+            border-radius: 5px;
+            padding: 7px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #1062ba;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        .success {
+            color: green;
+            font-size: 14px;
+        }
+        .contact-info {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .contact-info a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="h">
+
+        <h2>Contact Us - TravelWithUs</h2>
+    </div>
+    
+    <form id="contactForm" onsubmit="return validateForm()">
+        <!-- Name -->
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <div id="nameError" class="error"></div>
+
+        <!-- Email -->
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <div id="emailError" class="error"></div>
+
+        <!-- Subject -->
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+        <div id="subjectError" class="error"></div>
+
+        <!-- Message -->
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Tell us about your trip or any inquiries" rows="6" required></textarea>
+        <div id="messageError" class="error"></div>
+
+        <input type="submit" value="Send Message">
+        <div id="formSuccess" class="success"></div>
+    </form>
+
+    <div class="contact-info">
+        <p>If you prefer, you can also reach us at:</p>
+        <p>Email: <a href="mailto:travelwithus@gmail.com">travelwithus@gmail.com</a></p>
+        <p>Phone: +1 234 567 890</p>
+    </div>
+</div>
+
+<script>
+    // JavaScript form validation
+    function validateForm() {
+        // Clear previous error messages
+        document.getElementById('nameError').innerText = '';
+        document.getElementById('emailError').innerText = '';
+        document.getElementById('subjectError').innerText = '';
+        document.getElementById('messageError').innerText = '';
+        document.getElementById('formSuccess').innerText = '';
+
+        // Get form field values
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var subject = document.getElementById('subject').value;
+        var message = document.getElementById('message').value;
+
+        var isValid = true;
+
+        // Validate Name
+        if (name.trim() === '') {
+            document.getElementById('nameError').innerText = 'Please enter your name.';
+            isValid = false;
+        }
+
+        // Validate Email format
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailPattern.test(email)) {
+            document.getElementById('emailError').innerText = 'Please enter a valid email address.';
+            isValid = false;
+        }
+
+        // Validate Subject
+        if (subject.trim() === '') {
+            document.getElementById('subjectError').innerText = 'Please enter a subject.';
+            isValid = false;
+        }
+
+        // Validate Message
+        if (message.trim() === '') {
+            document.getElementById('messageError').innerText = 'Please enter your message.';
+            isValid = false;
+        }
+
+        // If the form is valid, show a success message
+        if (isValid) {
+            document.getElementById('formSuccess').innerText = 'Thank you for reaching out! We will get back to you soon.';
+            return false;  // Prevent form submission for demonstration
+        }
+
+        return isValid;  // Return true if the form is valid
+    }
+</script>
+
+</body>
+</html>
